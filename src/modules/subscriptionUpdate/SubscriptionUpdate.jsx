@@ -129,7 +129,12 @@ const SubscriptionUpdate = () => {
                             ? formatDate(transaction?.date ?? Date.now())
                             : "--"}
                         </td>
-                        <td>${transaction?.amount ?? "--"}</td>
+                        <td>
+                          $
+                          {transaction?.amount
+                            ? transaction?.amount / 100
+                            : "--"}
+                        </td>
                         <td>{transaction?.invoice ?? "--"}</td>
                       </tr>
                     )

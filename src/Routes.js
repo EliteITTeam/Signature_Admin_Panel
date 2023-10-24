@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  HashRouter,
-  Route,
-  Routes,
-} from "react-router-dom";
+import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
 import {
   Login,
   Dashboard,
@@ -27,7 +22,7 @@ const Routess = () => {
 
   return (
     <>
-      <HashRouter>
+      <BrowserRouter>
         <Toaster
           toastOptions={{
             style: {
@@ -76,7 +71,7 @@ const Routess = () => {
 
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </HashRouter>
+      </BrowserRouter>
     </>
   );
 };

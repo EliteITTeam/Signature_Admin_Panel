@@ -105,7 +105,7 @@ const LoginComp = () => {
               </button>
             </form>
           </div>
-          <div className={styles.login_container_box_options}>
+          {/* <div className={styles.login_container_box_options}>
             <img src={line} alt="line" />
             <p>or continue with</p>
             <img src={line} alt="line" />
@@ -113,7 +113,7 @@ const LoginComp = () => {
           <div className={styles.login_container_box_google_btn}>
             <img src={google} alt="google" />
             <p>Continue with google</p>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

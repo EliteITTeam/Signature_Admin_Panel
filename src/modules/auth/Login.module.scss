@@ -2,182 +2,106 @@
 @import "./../../scss/mixins";
 @import "./../../styles/";
 
-.login_container{
-    width: 100vw;
-    height: 100vh;
-    background-image: url("./../../assets/signInContainer.png");
-    background-repeat: no-repeat;
-    background-size: 100vw 100vh;
-    background-position: center center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    // margin-top: 4rem;
-    @include respond(laptop) {
-      center{
-        h1{
-          margin-left: 10rem;
-        }
-      }
-      }
-      @include respond(big-desktop) {
-        center{
-          h1{
-            display: none;
-          }
-        }
-        }
-      @include respond(tab-land) {
-        center{
-          h1{
-            margin-left: 0rem;
-          }
-        }
-        }
-        @include desktop {
-          margin-left: 0rem;
-        }
-        @include tablet {
-          margin-left: 0rem;
-        }
-    &_box{
-        width:20vw;
-        @include respond(tab-port) {
-            width:78vw;
-          }
-        height:60vh;
-        h1{
-            color:$primary
-        }
-        &_form{
-            padding:3rem;
-            margin-top: 5rem;
-            width: 40rem;
-            height: auto;
-            @include respond(tab-port) {
-                width:35rem;
-              }
-            background-color: $pureWhite;
-            border-radius: 0.8rem;
-            label{
-                font-style: normal;
-                font-weight: 400;
-                font-size: 1.4rem;
-                color:$almostBlack
-            }
-            ::-webkit-input-placeholder {
-                font-style: normal;
-                font-weight: 400;
-                font-size: 1.2rem;
-                color:$almostBlack
-              }
-              input{
-                margin-top: 1rem;
-                width: 35rem;
-                @include respond(tab-port) {
-                  width:30rem;
-                }
-                height: 3rem;
-                padding-left: 0.5rem;
-                background-color: rgba(249, 249, 249, 0.8);
-                border: 1.20938px solid #EEEEEE;
-                border-radius: 0.5rem;
-              }
-              input:focus{
-                outline: none;
-              }
-              &_question{
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-top: 3rem;
-                p{
-                    color:$primary;
-                    font-style: normal;
-                    font-weight: 400;
-                    font-size: 1.4rem;
-                }
-              }
-              button{
-                margin-top: 3rem;
-                width: 35rem;
-                @include respond(tab-port) {
-                  width:30rem;
-                }
-                height: 4rem;
-                background-color: #00CBFE;
-                color: $pureWhite;
-                outline: none;
-                border: none;
-                border-radius: 0.8rem;
-                font-style: normal;
-                font-weight: 800;
-                font-size: 1.8rem;
-                cursor: pointer;
-              }
-        }
-        &_options{
-          margin-left: 7rem!important;
-            width:100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin :3rem 0rem 0rem 8rem;
-            @include respond(big-desktop) {
-              display: none;
-            }
-            @include respond(laptop) {
-              margin :3rem 0rem 0rem 4rem;
-              }
-              @include respond(tab-port) {
-                margin :3rem 0rem 0rem 4rem;
-                margin-left: 4rem!important;
-                }
-              @include desktop {
-                margin :3rem 0rem 0rem 4rem;
-                margin-left: 4rem!important;
-                width:30rem;
-              }
-            @include respond(laptop) {
-              width:30rem;
-              }
-            p{
-                color:$primary;
-                font-style: normal;
-                font-weight: 500;
-                font-size: 1.5rem;
-                @include desktop {
-                  font-size: 1.3rem;
-                  font-weight: 600;
-                }
-                @include respond(laptop) {
-                  font-size: 1.3rem;
-                  font-weight: 600;
-                  }
-            }
-        }
-        &_google_btn{
-            width:100%;
-            border: 1px solid black;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            margin: 3rem 0rem 0rem 8rem;
-            border-radius: 0.5rem;
-            @include respond(big-desktop) {
-              display: none;
-            }
-              @include respond(tab-port) {
-                width:30rem;
-                margin: 3rem 0rem 0rem 4rem;
-              }
-            p{
-                color: #343434;
-                font-style: normal;
-                font-weight: 600;
-                font-size: 1.5rem;
-                margin-left: -8rem;
-            }
-        }
+.login_container {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+  background-image: url("./../../assets/signInContainer.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center center;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  padding: 5rem;
+  @include respond(sm-phone) {
+    padding: 3rem;
+  }
+  @include respond(xs-phone) {
+    padding: 2rem;
+  }
+
+  &_box {
+    width: 100%;
+    max-width: 47rem;
+    display: grid;
+    gap: 4rem;
+
+    & > h1 {
+      color: $primary;
+      text-align: center;
     }
+
+    & > form {
+      padding: 3rem;
+      background-color: $pureWhite;
+      border-radius: 0.8rem;
+      display: grid;
+      gap: 2rem;
+
+      & > div {
+        display: grid;
+        gap: 1rem;
+
+        & > label {
+          font-style: normal;
+          font-weight: 400;
+          font-size: 1.4rem;
+          color: $almostBlack;
+          width: 100%;
+        }
+
+        & > input {
+          width: 100%;
+          padding: 1rem 1.6rem;
+          background-color: rgba(249, 249, 249, 0.8);
+          border: 1.20938px solid #eeeeee;
+          border-radius: 0.5rem;
+          outline: none;
+
+          &::-webkit-input-placeholder {
+            font-style: normal;
+            font-weight: 400;
+            font-size: 1.2rem;
+            color: $almostBlack;
+          }
+        }
+      }
+
+      button {
+        width: 100%;
+        padding: 1rem 1.6rem;
+        background-color: #00cbfe;
+        color: $pureWhite;
+        outline: none;
+        border: none;
+        border-radius: 0.8rem;
+        font-style: normal;
+        font-weight: 800;
+        font-size: 1.8rem;
+        cursor: pointer;
+        overflow: hidden;
+        position: relative;
+
+        &:not(:disabled):hover {
+          opacity: 0.7;
+        }
+
+        &:disabled {
+          opacity: 0.7;
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+}
+
+.buttonLoader {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background-color: #00cbfe;
 }

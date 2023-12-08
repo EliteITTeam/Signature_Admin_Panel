@@ -1,247 +1,220 @@
-@import './../../styles/';
+@import "./../../styles/";
 @import "./../../scss/mixins";
-.container{
-    width: 100%;
-    height: auto;
-    padding: 4rem 4rem 0rem 4rem;
-    @include mobile{
-      padding: 4rem 2rem 0rem 2rem;
-    }
-    &_header{
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      @include mobile {
-        padding: 0rem 2rem 0rem 2rem;
-      }
-      h1{
-          color:$primary;
-          font-family: 'DM Sans';
-          font-style: normal;
-          font-weight: 500;
-          font-size: 2rem;
-      }
-      select{
-          padding:0.5rem 1rem 0.5rem 1rem;
-          outline: none;
-          border: none;
-      }
+.container {
+  padding: 5rem 5rem 0rem;
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+
+  @include query(900px) {
+    padding: 4rem 4rem 0rem;
   }
-  &_analysis_card{
-    margin-top: 4rem;
-    width:20rem;
-    @include mobile{
-      width:20rem;
-    }
-    height:10rem;
-    background-color: white;
-    overflow-x: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 1rem;
-    &_image{
-      margin-right: 2rem;
-      @include mobile{
-        margin-right: 0.8rem;
-      }
-    }
-    &_info{
-      p:nth-child(1){
-        color: #06152B;
-        font-family: 'DM Sans';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 1.5rem;
-        margin-bottom: 0.1rem;
-      }
-      p:nth-child(2){
-        color: #06152B;
-        opacity: 0.7;
-        font-family: 'DM Sans';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 1rem;
-      }
-      p:nth-child(3){
-        font-family: 'DM Sans';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 0.7rem;
-        opacity: 0.7;
-        span{
-          color:#F20A0A;
-        }
-      }
-    }
+  @include query(500px) {
+    padding: 3rem 3rem 0rem;
   }
-  &_graph{
-    margin-top: 4rem;
+  @include query(400px) {
+    padding: 2rem 2rem 0rem;
   }
-  &_graph_right{
-    width:95%;
-    height:49.5rem;
-    overflow-x: auto;
-    overflow-y: auto;
-    @include respond(big-desktop) {
-      height: auto;
-      overflow-x: none;
-      overflow-y: none;
-      }
-    margin-top: 4rem;
-    background-color: white;
-    padding: 4rem;
-    border-radius: 2rem;
-    @include desktop{
-      width: 100%;
-      height: auto;
-    }
-    &_intro{
-      padding-bottom: 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      p{
-        padding-top:1rem;
-        margin-top: 1rem;
-        color: #06152B;
-        font-family: 'DM Sans';
-        font-style: normal;
-        font-weight: 500;
-        font-size: 1.5rem;
-        opacity: 0.7;
-      }
-    }
+
+  &_header > h1 {
+    color: $primary;
+    font-family: "DM Sans";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 2rem;
   }
-  &_graph_left{
-    width:100%;
-    margin-top: 4rem;
-    background-color: white;
-    padding-bottom: 2rem;
-    border-radius: 2rem;
-    &_intro{
-      padding-bottom: 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      p{
-        color: #06152B;
-        font-family: 'DM Sans';
-        font-style: normal;
-        font-weight: 500;
-        font-size: 1.5rem;
-        opacity: 0.7;
+
+  & > .bottom {
+    display: grid;
+    gap: 4rem;
+    grid-template-columns: 1fr;
+
+    & > .cardsGrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, 30rem);
+      gap: 2rem;
+
+      @include query(900px) {
+        grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
       }
-    }
-    &_desc{
-      padding-top: 4rem;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      &_info{
-        display: flex;
+
+      & > .item {
+        background-color: white;
+        display: grid;
+        gap: 2rem;
+        border-radius: 1rem;
+        grid-template-columns: 6rem 1fr;
+        padding: 2rem;
         align-items: center;
-        justify-content: center;
-        img{
-          padding-right: 0.5rem;
+
+        & > img {
+          aspect-ratio: 1/1;
+          width: 100%;
+          object-fit: contain;
+          object-position: center center;
         }
-        p{
-          color: #06152B;
-          opacity: 0.7;
-          font-family: 'DM Sans';
-          font-style: normal;
-          font-weight: 500;
-          font-size: 1rem;
+
+        & > .info {
+          p:nth-child(1) {
+            color: #06152b;
+            font-family: "DM Sans";
+            font-style: normal;
+            font-weight: 700;
+            font-size: 1.5rem;
+          }
+          p:nth-child(2) {
+            color: #06152b;
+            opacity: 0.7;
+            font-family: "DM Sans";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 1.2rem;
+          }
+          p:nth-child(3) {
+            font-family: "DM Sans";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 1rem;
+            opacity: 0.7;
+            span {
+              color: #f20a0a;
+            }
+          }
         }
       }
     }
-  }
-  &_table{
-    margin-top: 4rem;
-    padding-bottom: 2rem;
-    width: 100%;
-    background-color: white;
-    &_intro{
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-top: 2rem;
-      p{
-        color: #2B4465;
+
+    & > .graph {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 5rem;
+
+      @include query(900px) {
+        grid-template-columns: 1fr;
+      }
+
+      & > .item {
+        background-color: #fff;
+        padding: 3rem;
+        border-radius: 1rem;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        grid-template-rows: auto 1fr;
+        @include custom-scrollbar();
+        overflow: auto;
+
+        & > p {
+          color: #06152b;
+          font-family: "DM Sans";
+          font-style: normal;
+          font-weight: 500;
+          font-size: 1.5rem;
+          opacity: 0.7;
+        }
+
+        & > .chart {
+          @include query(900px) {
+            width: 50rem;
+            justify-self: center;
+          }
+        }
+
+        & > .colors {
+          display: flex;
+          gap: 1rem;
+          flex-wrap: wrap;
+
+          & > .colors_item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            img {
+              padding-right: 0.5rem;
+            }
+            p {
+              color: #06152b;
+              opacity: 0.7;
+              font-family: "DM Sans";
+              font-style: normal;
+              font-weight: 500;
+              font-size: 1rem;
+            }
+          }
+        }
+      }
+    }
+
+    & > .container_table {
+      background-color: white;
+      display: grid;
+      gap: 2rem;
+      border-radius: 1rem;
+      padding: 2rem 0;
+      grid-template-columns: 1fr;
+      @include custom-scrollbar();
+      overflow: auto;
+
+      & > p {
+        color: #2b4465;
         opacity: 0.7;
-        font-family: 'DM Sans';
+        font-family: "DM Sans";
         font-style: normal;
         font-weight: 500;
         font-size: 1.5rem;
         padding-left: 2rem;
       }
-    }
-    &_search_box{
-      margin-right: 2rem;
-      border-bottom: 1px solid #8A8A8A;
-      @include mobile{
-        display: none;
-      }
-      input{
-        outline:none;
-        border: none;
-      }
-      input::placeholder{
-        color: #8A8A8A;
-        font-family: 'Lato';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 1rem;
-      }
-    }
-    &_content{
-      margin-left: 2rem;
-      margin-top: 2rem;
-table {
-  width: 90%;
-  border-collapse: collapse;
-  overflow-x: auto;
-}
+      & > .content {
+        padding: 2rem;
+        min-width: 70rem;
 
-th, td {
-  padding: 8px;
-  text-align: left;
-}
-thead th {
-  border-bottom: 0.5px solid #06152B;
-  color: #06152B;
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 1rem;
-}
-tbody td {
-  color: #2B4465;
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 1rem;
-}
-td:nth-child(1){
-  display: flex;
-  align-items: center;
-}
-td span {
-  margin-left: 0.8rem; 
-}
-td:nth-child(4){
-  color:#03A89E
-}
-tr:nth-child(2n) {
-  background-color: #F1F4FA;;
-}
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          overflow-x: auto;
+        }
+
+        th,
+        td {
+          padding: 8px;
+          text-align: left;
+        }
+        thead th {
+          border-bottom: 0.5px solid #06152b;
+          color: #06152b;
+          font-family: "DM Sans";
+          font-style: normal;
+          font-weight: 400;
+          font-size: 1rem;
+        }
+        tbody td {
+          color: #2b4465;
+          font-family: "DM Sans";
+          font-style: normal;
+          font-weight: 400;
+          font-size: 1rem;
+        }
+        td:nth-child(1) {
+          display: flex;
+          align-items: center;
+        }
+        td span {
+          margin-left: 0.8rem;
+        }
+        td:nth-child(4) {
+          color: #03a89e;
+        }
+        tr:nth-child(2n) {
+          background-color: #f1f4fa;
+        }
+      }
     }
   }
 }
 
-.analysis_grid{
-  margin-right: 2rem!important;
-  @include desktop{
-    margin-right: 0rem!important;
+.analysis_grid {
+  margin-right: 2rem !important;
+  @include desktop {
+    margin-right: 0rem !important;
   }
 }

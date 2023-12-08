@@ -46,29 +46,21 @@ const Subscription = () => {
   }, [loading]);
 
   return (
-    <>
-      <div className={styles.header}>
-        <h1>Subscribed users</h1>
-        {/* <select>
-          <option>Mar 2023</option>
-          <option>Mar 2024</option>
-          <option>Mar 2025</option>
-        </select> */}
-      </div>
-      <div className={styles.intro}>
-        <div className={styles.intro_left_side}></div>
-        <form className={styles.intro_right_side} onSubmit={handleSubmit}>
+    <div className={styles.container}>
+      <h1>Subscribed users</h1>
+
+      <div className={styles.bottom}>
+        <form className={styles.form} onSubmit={handleSubmit}>
           <input
             type="text"
             placeholder="Search by Name"
             name="search"
             onChange={(e) => (e.target.value === "" ? setSearchText("") : "")}
           />
-          <img src={search} alt="search" />
+          <img onClick={handleSubmit} src={search} alt="search" />
         </form>
-      </div>
-      <div className={styles.table}>
-        <div className={styles.overflow}>
+
+        <div className={styles.table}>
           <table>
             <thead>
               <tr>
@@ -102,35 +94,21 @@ const Subscription = () => {
                   </td>
                 </tr>
               )}
-              {results?.length !== 0 && (
-                <tr>
-                  <td
-                    style={{ paddingTop: "2rem" }}
-                    colSpan={5}
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <div
-                      style={{
-                        display: "grid",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <MyPagination
-                        count={totalPages}
-                        page={currentPage}
-                        onChange={(_, newPage) => setCurrentPage(newPage)}
-                      />
-                    </div>
-                  </td>
-                </tr>
-              )}
             </tbody>
           </table>
         </div>
-        <div className={styles.info}>{/* <span>1 to 18 of 18</span> */}</div>
+
+        {results?.length !== 0 && (
+          <div className={styles.pagination}>
+            <MyPagination
+              count={totalPages}
+              page={currentPage}
+              onChange={(_, newPage) => setCurrentPage(newPage)}
+            />
+          </div>
+        )}
       </div>
-    </>
+    </div>
   );
 };
 

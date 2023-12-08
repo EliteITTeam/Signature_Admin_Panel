@@ -1,45 +1,72 @@
 @import "./../../styles/";
-.header{
-    width: 100%;
-    height: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 4rem 4rem 0rem 4rem;
-    @include mobile {
-      padding: 4rem 2rem 0rem 2rem;
-    }
-    h1{
-        color:$primary;
-        font-family: 'DM Sans';
-        font-style: normal;
-        font-weight: 500;
-        font-size: 2rem;
-    }
-    select{
-        padding:0.5rem 1rem 0.5rem 1rem;
+@import "./../../scss/mixins";
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  padding: 5rem;
+  @include query(900px) {
+    padding: 4rem;
+  }
+
+  @include query(500px) {
+    padding: 3rem;
+  }
+
+  @include query(400px) {
+    padding: 2rem;
+  }
+
+  & > h1 {
+    color: $primary;
+    font-family: "DM Sans";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 2rem;
+  }
+
+  & > .bottom {
+    display: grid;
+    gap: 4rem;
+    grid-template-columns: 1fr;
+
+    & > .form {
+      background: #d9d9d9;
+      border-radius: 1000rem;
+      padding: 1rem 2rem 1rem 2rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1.6rem;
+      align-items: center;
+      max-width: 30rem;
+      margin-left: auto;
+
+      & > input {
         outline: none;
         border: none;
+        background-color: transparent;
+        width: 100%;
+      }
+      & > input::placeholder {
+        color: #8a8a8a;
+        font-family: "Lato";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 1rem;
+      }
     }
-}
 
-
-.table {
-    margin-top: $spacing-unit * 11;
-    padding-left: 2.5rem;
-    cursor: pointer;
-    @include flex(row, flex-start, space-between, 20rem);
-    @include l-desktop {
-      @include flex(column, stretch, flex-start, 1.6rem);
-    }
-    & > .overflow {
-      flex: 1;
-      overflow-x: auto;
+    & > .table {
+      max-width: 150rem;
+      overflow: auto;
+      @include custom-scrollbar();
 
       & > table {
         width: 100%;
         border-collapse: collapse;
         border-spacing: 0rem;
+        min-width: 70rem;
         & > thead {
           & > tr {
             & > th {
@@ -47,7 +74,7 @@
               font-size: $font-sm;
               color: $primary;
               font-weight: 600;
-              font-family: 'DM Sans';
+              font-family: "Lato";
               font-style: normal;
               white-space: nowrap;
               padding: 0rem $spacing-unit * 3;
@@ -73,18 +100,27 @@
         }
         & > tbody {
           & > tr {
+            transition: opacity 300ms;
+            &:hover {
+              opacity: 0.5;
+              cursor: pointer;
+            }
+
             & > td {
               text-align: left;
               font-size: $font-sm;
               color: $primary;
-              font-weight: 300;
-              font-family: 'DM Sans';
+              font-weight: 500;
+              font-family: "Lato";
               font-style: normal;
               white-space: nowrap;
               padding: $spacing-unit * 3 $spacing-unit * 3;
               &:last-child {
                 text-align: right;
                 font-size: $font-b;
+              }
+              &:nth-child(2) {
+                color: #6ec4cf;
               }
             }
 
@@ -98,79 +134,12 @@
         }
       }
     }
-    & > .info {
-      flex-basis: 25rem;
-      text-align: center;
-      font-size: $font-sm;
-      color: $primary-color;
-      font-weight: 600;
-      @include l-desktop {
-        flex-basis: auto;
-        text-align: right;
-        padding: 0rem $spacing-unit * 20;
-      }
+
+    & > .pagination {
+      display: grid;
+      align-items: center;
+      justify-items: center;
+      max-width: 150rem;
     }
   }
-
-  .intro{
-    width: 100%;
-    height: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 4rem 4rem 0rem 4rem;
-    @include tablet {
-      flex-direction: column;
-      padding: 4rem 4rem 0rem 4rem;
-    }
-    &_left_side{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        @include tablet {
-          display: none;
-        }
-        div{
-            padding-right: 8rem;
-            @include tablet {
-              padding-right: 6rem;
-            }
-            p{
-                color:$primary;
-                font-family: 'DM Sans';
-                font-style: normal;
-                font-weight: 500;
-                font-size: 1.3rem;
-                padding-bottom: 0.5rem;
-
-            }
-            span{
-                color: #8A8A8A;
-                font-family: 'DM Sans';
-                font-style: normal;
-                font-weight: 500;
-                font-size: 1.3rem;
-            }
-        }
-    }
-    &_right_side{
-    @include tablet {
-        padding:1rem 4rem 1rem 2rem;
-      }
-        input{
-            outline: none;
-            border: none;
-            background-color: transparent;
-        }
-        input::placeholder{
-            color: #8A8A8A;
-            font-family: 'Lato';
-            font-style: normal;
-            font-weight: 400;
-            font-size: 1rem;
-        }
-        background: #D9D9D9;
-        border-radius: 1rem;
-        padding: 0.2rem 2rem 0.2rem 2rem;
-    }
 }

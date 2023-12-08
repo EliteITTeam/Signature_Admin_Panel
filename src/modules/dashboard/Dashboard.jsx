@@ -73,6 +73,7 @@ const Dashboard = () => {
     "Nov",
     "Dec",
   ];
+
   const listArray = useMemo(
     () => [
       {
@@ -159,33 +160,19 @@ const Dashboard = () => {
     <div className={styles.container}>
       <div className={styles.container_header}>
         <h1>Dashboard</h1>
-        {/* <select>
-          <option>Mar 2023</option>
-          <option>Mar 2024</option>
-          <option>Mar 2025</option>
-        </select> */}
       </div>
-      <Grid container spacing={2}>
-        {listArray.map((data, ind) => {
-          return (
-            <Grid
-              item
-              xs={6}
-              sm={6}
-              md={2}
-              lg={2}
-              key={ind}
-              className={styles.analysis_grid}
-            >
-              <div className={styles.container_analysis_card}>
-                <div className={styles.container_analysis_card_image}>
-                  {ind % 2 === 0 ? (
-                    <img src={heart} alt="Heart" />
-                  ) : (
-                    <img src={business} alt="Business" />
-                  )}
-                </div>
-                <div className={styles.container_analysis_card_info}>
+
+      <div className={styles.bottom}>
+        <div className={styles.cardsGrid}>
+          {listArray.map((data, ind) => {
+            return (
+              <div key={ind} className={styles.item}>
+                {ind % 2 === 0 ? (
+                  <img src={heart} alt="Heart" />
+                ) : (
+                  <img src={business} alt="Business" />
+                )}
+                <div className={styles.info}>
                   <p>{data.number}</p>
                   <p>{data.type}</p>
                   <p>
@@ -193,18 +180,14 @@ const Dashboard = () => {
                   </p>
                 </div>
               </div>
-            </Grid>
-          );
-        })}
-      </Grid>
-      <Grid container>
-        <Grid item xs={12} sm={12} md={8} lg={8}>
-          <div className={styles.container_graph}>
-            <div className={styles.container_graph_right}>
-              <div className={styles.container_graph_right_intro}>
-                <p>Total users data on monthly basis</p>
-                <img src={graphMenu} alt="graphMenu" />
-              </div>
+            );
+          })}
+        </div>
+
+        <div className={styles.graph}>
+          <div className={styles.item}>
+            <p>Total users data on monthly basis</p>
+            <div className={styles.chart}>
               <Line
                 data={{
                   labels: lineGraphLabels,
@@ -225,76 +208,66 @@ const Dashboard = () => {
               ></Line>
             </div>
           </div>
-        </Grid>
-        <Grid item xs={12} sm={12} md={4} lg={4}>
-          <div className={styles.container_graph_left}>
-            <div className={styles.container_graph_left_intro}>
-              {/* <p>Registered User</p> */}
-              {/* <img src={graphMenu} alt="graphMenu" /> */}
+          <div className={styles.item}>
+            <p>Registered User</p>
+            <div className={styles.chart}>
+              <Pie data={pieChartData} options={options}></Pie>
             </div>
-            <Pie data={pieChartData} options={options}></Pie>
-            <div className={styles.container_graph_left_desc}>
-              <div className={styles.container_graph_left_desc_info}>
+            <div className={styles.colors}>
+              <div className={styles.colors_item}>
                 <img src={grayImage} alt="grayImage" />
                 <p>Starter</p>
               </div>
-              <div className={styles.container_graph_left_desc_info}>
+              <div className={styles.colors_item}>
                 <img src={blueImage} alt="grayImage" />
                 <p>Professional</p>
               </div>
-              <div className={styles.container_graph_left_desc_info}>
+              <div className={styles.colors_item}>
                 <img src={darkBlueImage} alt="grayImage" />
                 <p>Small Business</p>
               </div>
-              <div className={styles.container_graph_left_desc_info}>
+              <div className={styles.colors_item}>
                 <img src={chart4} alt="grayImage" />
                 <p>Comapny</p>
               </div>
-              <div className={styles.container_graph_left_desc_info}>
+              <div className={styles.colors_item}>
                 <img src={chart5} alt="grayImage" />
                 <p>Enterprise</p>
               </div>
             </div>
           </div>
-        </Grid>
-      </Grid>
-      <div className={styles.container_table}>
-        <div className={styles.container_table_intro}>
-          <p>All Registered users</p>
-          {/* <div className={styles.container_table_search_box}>
-            <input type="text" placeholder="Search by Name" />
-            <img src={tableSearch} alt="search" />
-          </div> */}
         </div>
-        <div className={styles.container_table_content}>
-          <table>
-            <thead>
-              <tr>
-                {/* <th>Tracking no</th> */}
-                <th>User Name</th>
-                <th>Display Packege</th>
-                <th>No of Signature</th>
-                {/* <th>Total Payment</th> */}
-              </tr>
-            </thead>
-            <tbody>
-              {allUsers.map((user, ind) => (
-                <tr key={ind}>
-                  {/* <td data-label="no">#876364</td> */}
-                  <td data-label="userName">
-                    <img
-                      src={user?.photoPath ?? tableUserImage}
-                      alt="tableUserImage"
-                    />
-                    <span>{user?.name ?? "--"}</span>
-                  </td>
-                  <td data-label="price">{user?.subscription ?? "--"}</td>
-                  <td data-label="singantureNo">{user?.signatures ?? 0}</td>
-                  {/* <td data-label="payment">$6.000.000</td> */}
+
+        <div className={styles.container_table}>
+          <p>All Registered users</p>
+          <div className={styles.content}>
+            <table>
+              <thead>
+                <tr>
+                  {/* <th>Tracking no</th> */}
+                  <th>User Name</th>
+                  <th>Display Packege</th>
+                  <th>No of Signature</th>
+                  {/* <th>Total Payment</th> */}
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {allUsers.map((user, ind) => (
+                  <tr key={ind}>
+                    <td data-label="userName">
+                      <img
+                        src={user?.photoPath ?? tableUserImage}
+                        alt="tableUserImage"
+                      />
+                      <span>{user?.name ?? "--"}</span>
+                    </td>
+                    <td data-label="price">{user?.subscription ?? "--"}</td>
+                    <td data-label="singantureNo">{user?.signatures ?? 0}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>

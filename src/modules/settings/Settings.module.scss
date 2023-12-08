@@ -1,108 +1,140 @@
 @import "./../../styles/";
 @import "./../../scss/mixins";
 @import "./../../scss/variable";
-.container{
-    height: 100vh;
-    background-image: url("./../../assets/settingBackgroundImage.svg");
-    background-repeat: no-repeat;
-    background-position: center center;
-}
-.parent {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.container {
+  min-height: calc(100vh);
+  min-height: calc(100svh);
+
+  background-image: url("./../../assets/settingBackgroundImage.svg");
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  display: grid;
+  align-items: center;
+  justify-content: center;
+
+  padding: 5rem;
+  @include query(990px) {
+    min-height: calc(100vh - 20rem);
+    min-height: calc(100svh - 20rem);
   }
-  .child {
-    margin: auto;
-    padding-top: 10%;
-    @include mobile{
-      padding-top: 30%;
-    }
-    &_heading{
-        color:$primary;
-        font-family: 'Lato';
+
+  @include query(900px) {
+    padding: 4rem;
+  }
+
+  @include query(500px) {
+    padding: 3rem;
+  }
+
+  @include query(400px) {
+    padding: 2rem;
+  }
+
+  & > div {
+    display: grid;
+    gap: 2rem;
+    max-width: 40rem;
+
+    & > div {
+      display: grid;
+      gap: 1rem;
+      & > h1 {
+        color: $primary;
+        font-family: "DM Sans";
         font-style: normal;
-        font-weight: 600;
+        font-weight: 700;
         font-size: 2rem;
-        margin-left: 7rem;
-    }
-    &_desc{
-        padding-top: 0.7rem;
-        color: #8A8A8A;
-        font-family: 'Lato';
+        text-align: center;
+      }
+      & > p {
+        color: $primary;
+        font-family: "DM Sans";
         font-style: normal;
-        font-weight: 400;
-        font-size: 1.3rem;
+        font-size: 1.4rem;
+        text-align: center;
+      }
     }
-    &_form{
-        width:33rem;
-        margin-top: 2rem;
-        border-radius: 1rem;
-        padding:3rem;
-            @include respond(tab-port) {
-                width:35rem;
-              }
-            background-color: $pureWhite;
-            label{
-                font-family: 'Lato';
-                font-style: normal;
-                font-weight: 400;
-                font-size: 1rem;
-                color:#111111
-            }
-            ::-webkit-input-placeholder {
-                font-family: 'Lato';
-                font-style: normal;
-                font-weight: 400;
-                font-size: 1.2rem;
-                color:#111111
-              }
-              input{
-                margin-top: 1rem;
-                width: 27rem;
-                @include respond(tab-port) {
-                  width:30rem;
-                }
-                height: 3rem;
-                padding-left: 0.5rem;
-                background-color: rgba(249, 249, 249, 0.8);
-                border: 1.20938px solid #EEEEEE;
-                border-radius: 0.5rem;
-              }
-              input:focus{
-                outline: none;
-              }
-              &_question{
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-top: 2rem;
-                p{
-                  color: #111111;
-                  font-family: 'Lato';
-                  font-style: normal;
-                  font-weight: 400;
-                  font-size: 1rem;
-                }
-              }
-              button{
-                margin-top: 3rem;
-                width: 27rem;
-                background-color: #4EDAFC;
-                outline:none;
-                border: none;
-                padding:1rem 0rem;
-                border-radius: 1rem;
-                color:white;
-                font-family: 'Lato';       
-                font-style: normal;
-                font-weight: 800;
-                font-size: 1.5rem;
-                @include respond(tab-port) {
-                  width:30rem;
-                }
-                cursor: pointer;
-              }
+
+    & > form {
+      width: 100%;
+      max-width: 90vw;
+      border-radius: 1rem;
+      padding: 2rem;
+      background-color: $pureWhite;
+      display: grid;
+      gap: 1.5rem;
+
+      & > div {
+        display: grid;
+        gap: 1rem;
+
+        & > label {
+          font-family: "Lato";
+          font-style: normal;
+          font-weight: 400;
+          font-size: 1rem;
+          color: #111111;
         }
+
+        & > input {
+          width: 100%;
+          padding: 0.8rem 1.6rem;
+          background-color: rgba(249, 249, 249, 0.8);
+          border: 0.1rem solid #eeeeee;
+          border-radius: 0.5rem;
+          outline: none;
+
+          &::-webkit-input-placeholder {
+            font-family: "Lato";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 1.2rem;
+            color: #111111;
+          }
+        }
+
+        & > p {
+          color: red;
+          font-weight: 500;
+          font-family: "Roboto";
+          font-size: 1.2rem;
+        }
+      }
+
+      button {
+        width: 100%;
+        background-color: #4edafc;
+        outline: none;
+        border: none;
+        padding: 1rem 0rem;
+        border-radius: 1rem;
+        color: white;
+        font-family: "Lato";
+        font-style: normal;
+        font-weight: 800;
+        font-size: 1.5rem;
+        @include respond(tab-port) {
+          width: 30rem;
+        }
+        cursor: pointer;
+      }
+
+      & > .twoSetup {
+        cursor: pointer;
+
+        & > h3 {
+          color: $primary;
+          font-family: "DM Sans";
+          font-style: normal;
+          font-weight: 600;
+          font-size: 1.4rem;
+        }
+
+        & > img {
+          width: 3rem;
+        }
+      }
     }
-    input[type="checkbox"] {box-sizing: border-box;padding: 0;accent-color:#4EDAFC; }
+  }
+}

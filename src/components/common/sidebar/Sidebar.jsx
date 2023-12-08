@@ -102,7 +102,7 @@ const Sidebar = ({ handler }) => {
     <div className={styles.container}>
       <div
         className={styles.container_main_logo}
-        onClick={() => navigate("/")}
+        onClick={() => navigate("/dashboard")}
         style={{ cursor: "pointer" }}
       >
         <img src={logo} alt="main_logo" />

@@ -48,69 +48,70 @@ const Settings = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.parent}>
-        <div className={styles.child}>
+      <div>
+        <div>
           <h1 className={styles.child_heading}>Change Password</h1>
           <p className={styles.child_desc}>
             Your Password has Expired, Please choose a New Password
           </p>
-          <div className={styles.child_form}>
-            <form onSubmit={formik.handleSubmit}>
-              <label>Old Password</label>
-              <br></br>
-              <input
-                type="password"
-                placeholder="*********"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.oldPassword}
-                name="oldPassword"
-              />
-              {formik.touched.oldPassword && formik.errors.oldPassword && (
-                <p style={errorStyles}>{formik.errors.oldPassword}</p>
-              )}
-              <div className={styles.child_form_question}>
-                <label>New Password</label>
-              </div>
-              <input
-                type="password"
-                placeholder="*********"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.newPassword}
-                name="newPassword"
-              />
-              {formik.touched.newPassword && formik.errors.newPassword && (
-                <p style={errorStyles}>{formik.errors.newPassword}</p>
-              )}
-              <div className={styles.child_form_question}>
-                <label>Confirm New Password</label>
-              </div>
-              <input
-                type="password"
-                placeholder="*********"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.confirmPassword}
-                name="confirmPassword"
-              />
-              {formik.touched.confirmPassword &&
-                formik.errors.confirmPassword && (
-                  <p style={errorStyles}>{formik.errors.confirmPassword}</p>
-                )}
-              <button type="submit">Reset Password</button>
-              <div
-                className={styles.child_form_question}
-                style={{ cursor: "pointer" }}
-                onClick={() => navigate("/changePassword")}
-              >
-                <p>Two factor authentication</p>
-                {/* <input type="checkbox" checked /> */}
-                <img src={checkBox} alt="checkBox" />
-              </div>
-            </form>
-          </div>
         </div>
+        <form onSubmit={formik.handleSubmit}>
+          <div>
+            <label>Old Password</label>
+            <input
+              type="password"
+              placeholder="*********"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.oldPassword}
+              name="oldPassword"
+            />
+            {formik.touched.oldPassword && formik.errors.oldPassword && (
+              <p>{formik.errors.oldPassword}</p>
+            )}
+          </div>
+          <div>
+            <div className={styles.child_form_question}>
+              <label>New Password</label>
+            </div>
+            <input
+              type="password"
+              placeholder="*********"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.newPassword}
+              name="newPassword"
+            />
+            {formik.touched.newPassword && formik.errors.newPassword && (
+              <p>{formik.errors.newPassword}</p>
+            )}
+          </div>
+          <div>
+            <label>Confirm New Password</label>
+            <input
+              type="password"
+              placeholder="*********"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.confirmPassword}
+              name="confirmPassword"
+            />
+            {formik.touched.confirmPassword &&
+              formik.errors.confirmPassword && (
+                <p>{formik.errors.confirmPassword}</p>
+              )}
+          </div>
+
+          <button type="submit">Reset Password</button>
+
+          <div
+            className={styles.twoSetup}
+            onClick={() => navigate("/changePassword")}
+          >
+            <h3>Two factor authentication</h3>
+            <img src={checkBox} alt="checkBox" />
+          </div>
+        </form>
       </div>
     </div>
   );

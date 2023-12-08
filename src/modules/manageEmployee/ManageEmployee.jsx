@@ -5,13 +5,14 @@ import Grid from "@mui/material/Grid";
 import { useNavigate } from "react-router-dom";
 import { FaUserAlt } from "react-icons/fa";
 import styled from "@emotion/styled";
-import { Pagination } from "@mui/material";
+import { Modal, Pagination, useMediaQuery } from "@mui/material";
 import { useFormik } from "formik";
 import { invitationSchema } from "../../schemas";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers, inviteNewUser } from "../../store/actions";
 import toast from "react-hot-toast";
 import { useGlobalContext } from "../../Context";
+import { RxOpenInNewWindow } from "react-icons/rx";
 
 const MyPagination = styled(({ ...props }) => <Pagination {...props} />)`
   & > .MuiPagination-ul {
@@ -67,51 +68,11 @@ const ManageEmployee = () => {
   }, [loading]);
   return (
     <div className={styles.container}>
-      <div className={styles.container_header}>
-        <h1>Manage employee</h1>
-        {/* <select>
-          <option>Mar 2023</option>
-          <option>Mar 2024</option>
-          <option>Mar 2025</option>
-        </select> */}
-      </div>
-      <div className={styles.container_intro}>
-        {/* <div className={styles.container_intro_left_side}>
-          <div>
-            <p>Employees Status</p>
-            <span>Non Archived</span>
-          </div>
-          <div>
-            <p>Groups</p>
-            <span>All group</span>
-          </div>
-          <div>
-            <p>Status</p>
-            <span>status</span>
-          </div>
-          <div>
-            <p>Assigned Signature</p>
-            <span>All Signature</span>
-          </div>
-        </div>
-        <div className={styles.container_intro_right_side}>
-          <button
-            className={styles.container_intro_right_side_btn1}
-            onClick={() => navigate("/manageEmployee")}
-          >
-            Add manually
-          </button>
-          <button
-            className={styles.container_intro_right_side_btn2}
-            onClick={() => navigate("/inviteEmployee")}
-          >
-            Invite users
-          </button>
-        </div> */}
-      </div>
-      <div className={styles.container_grid}>
-        <Grid container spacing={2}>
-          <Grid item xs={12} sm={12} md={9} lg={9}>
+      <h1>Manage employee</h1>
+
+      <div className={styles.bottom}>
+        <div className={styles.left}>
+          <div className={styles.table}>
             <table>
               <thead>
                 <tr>
@@ -138,142 +99,99 @@ const ManageEmployee = () => {
                     </td>
                   </tr>
                 )}
-                {results?.length !== 0 && (
-                  <tr>
-                    <td
-                      style={{ paddingTop: "2rem" }}
-                      colSpan={5}
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <div
-                        style={{
-                          display: "grid",
-                          alignItems: "center",
-                          justifyContent: "center",
-                        }}
-                      >
-                        <MyPagination
-                          count={totalPages}
-                          page={currentPage}
-                          onChange={(_, newPage) => setCurrentPage(newPage)}
-                        />
-                      </div>
-                    </td>
-                  </tr>
-                )}
               </tbody>
             </table>
-          </Grid>
-          <Grid item xs={12} sm={12} md={3} lg={3}>
-            <div className={styles.container_grid_right_side}>
-              <p className={styles.container_grid_right_side_heading}>
-                Add members
-              </p>
-              {/* <div className={styles.container_grid_right_side_options}>
-                <div>
-                  <input type="radio" />
-                  <p className={styles.container_grid_right_side_options_p}>
-                    All Members
-                  </p>
+          </div>
+          <div className={styles.pagination}>
+            <MyPagination
+              count={totalPages}
+              page={currentPage}
+              onChange={(_, newPage) => setCurrentPage(newPage)}
+            />
+          </div>
+        </div>
+
+        <WithResponsive>
+          <div className={styles.inviteForm}>
+            <div className={styles.formInput}>
+              <h2>Add members</h2>
+              <div>
+                <div className={styles.input}>
+                  <FaUserAlt />
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    value={formik.values.email}
+                    name="email"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                  />
                 </div>
-                <div>
-                  <input type="radio" />
-                  <p className={styles.container_grid_right_side_options_p}>
-                    Only Selected
-                  </p>
-                </div>
-              </div> */}
-              <div className={styles.container_grid_right_side_search_box}>
-                {/* <img
-                  src={employSearch}
-                  alt="employSearch"
-                  width="20"
-                  height="13"
-                /> */}
-                <FaUserAlt style={{ fontSize: "1.3rem", color: "#2B4465" }} />
-                <input
-                  type="email"
-                  placeholder="Email"
-                  value={formik.values.email}
-                  name="email"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                />
-              </div>
-              {formik.errors.email && formik.touched.email && (
-                <p
-                  style={{
-                    fontSize: "1rem",
-                    color: "#d63535",
-                    fontWeight: "500",
-                    fontFamily: "Roboto",
-                    paddingTop: ".65rem",
-                  }}
-                >
-                  {formik.errors.email}
-                </p>
-              )}
-              {/* <div className={styles.container_grid_right_side_info}>
-                <p>Select all</p>
-                <p>Deselect all</p>
-              </div> */}
-              <div className={styles.container_grid_right_side_table}>
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Role</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <label>
-                          <input
-                            type="radio"
-                            name="role"
-                            value="Account Manager"
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                            defaultChecked
-                          />
-                          <span className="text">Account Manager</span>
-                        </label>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label>
-                          <input
-                            type="radio"
-                            name="role"
-                            value="Support Manager"
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                          />
-                          <span className="text">Support Manager</span>
-                        </label>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div className={styles.container_grid_right_side_btns}>
-                {/* <button className={styles.container_grid_right_side_btns_btn1}>
-                  Cancel
-                </button> */}
-                <button
-                  className={styles.container_grid_right_side_btns_btn2}
-                  onClick={formik.handleSubmit}
-                >
-                  Send Invite
-                </button>
+                {formik.errors.email && formik.touched.email && (
+                  <p>{formik.errors.email}</p>
+                )}
               </div>
             </div>
-          </Grid>
-        </Grid>
+
+            <div className={styles.formInput}>
+              <h2>Role</h2>
+              <div>
+                <label>
+                  <input
+                    type="radio"
+                    name="role"
+                    value="Account Manager"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    defaultChecked
+                  />
+                  <span className="text">Account Manager</span>
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    name="role"
+                    value="Support Manager"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                  />
+                  <span className="text">Support Manager</span>
+                </label>
+              </div>
+            </div>
+
+            <button
+              className={styles.container_grid_right_side_btns_btn2}
+              onClick={formik.handleSubmit}
+            >
+              Send Invite
+            </button>
+          </div>
+        </WithResponsive>
       </div>
     </div>
   );
 };
 
 export default ManageEmployee;
+
+const WithResponsive = ({ children }) => {
+  const [isModalOpen, setIsModalOpen] = useState(true);
+  const isTab = useMediaQuery("(max-width: 900px)");
+  return isTab ? (
+    <>
+      <button onClick={() => setIsModalOpen(true)} className={styles.floating}>
+        <RxOpenInNewWindow />
+      </button>
+      <Modal
+        open={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        className={styles.modal}
+      >
+        {children}
+      </Modal>
+    </>
+  ) : (
+    children
+  );
+};

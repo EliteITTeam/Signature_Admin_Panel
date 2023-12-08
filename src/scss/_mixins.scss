@@ -1,27 +1,74 @@
 @mixin respond($breakpoint) {
-    @if $breakpoint == phone {
-      @media only screen and (max-width: 37.5em) {
-        @content;
-      } //600px
-    }
-    @if $breakpoint == tab-port {
-      @media only screen and (max-width: 56.25em) {
-        @content;
-      } //900px
-    }
-    @if $breakpoint == tab-land {
-      @media only screen and (max-width: 75em) {
-        @content;
-      } //1200px
-    }
-    @if $breakpoint == laptop {
-      @media only screen and (max-width: 105em) {
-        @content;
-      } //1200px
-    }
-    @if $breakpoint == big-desktop {
-      @media only screen and (min-width: 112.5em) {
-        @content;
-      } //1800
+  @if $breakpoint == xs-phone {
+    @media only screen and (max-width: 400px) {
+      @content;
+    } //600px
+  }
+  @if $breakpoint == sm-phone {
+    @media only screen and (max-width: 500px) {
+      @content;
+    } //600px
+  }
+  @if $breakpoint == phone {
+    @media only screen and (max-width: 37.5em) {
+      @content;
+    } //600px
+  }
+  @if $breakpoint == tab-port {
+    @media only screen and (max-width: 56.25em) {
+      @content;
+    } //900px
+  }
+  @if $breakpoint == tab-land {
+    @media only screen and (max-width: 75em) {
+      @content;
+    } //1200px
+  }
+  @if $breakpoint == laptop {
+    @media only screen and (max-width: 105em) {
+      @content;
+    } //1200px
+  }
+  @if $breakpoint == big-desktop {
+    @media only screen and (min-width: 112.5em) {
+      @content;
+    } //1800
+  }
+}
+
+@mixin query($width, $isMin: false) {
+  @if $isMin == true {
+    @media only screen and (min-width: $width) {
+      @content;
     }
   }
+  @if $isMin == false {
+    @media only screen and (max-width: $width) {
+      @content;
+    }
+  }
+}
+
+@mixin custom-scrollbar() {
+  /* width */
+  &::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 1000rem;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+}

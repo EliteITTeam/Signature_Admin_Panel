@@ -176,7 +176,7 @@ const ManageEmployee = () => {
 export default ManageEmployee;
 
 const WithResponsive = ({ children }) => {
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const isTab = useMediaQuery("(max-width: 900px)");
   return isTab ? (
     <>

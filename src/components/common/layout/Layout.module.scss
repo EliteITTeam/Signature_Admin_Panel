@@ -1,34 +1,56 @@
+@import "./../../../scss/mixins";
 @import "./../../../styles";
 
-.container{
-    &_sidebar{
-    width: 17rem;
-      position: fixed;
-      left: 0;
+.container {
+  & > .top {
+    display: none;
+
+    @include query(990px) {
+      display: grid;
+      grid-template-columns: 1fr;
+      position: sticky;
+      height: 8.48rem;
       top: 0;
-      height: 100vh;
-      overflow-y: auto;
-      overflow-x: hidden;
-      z-index: 100;
-      background-color: $white-color;
-      transition: transform $transition-duration;
-      @include desktop {
-        &.open {
-          transform: translateX(0%);
-        }
-        &.close {
-          transform: translateX(-100%);
-        }
+      background-color: #fff;
+      box-shadow: 0.2rem 0.2rem 6px 0px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  &_sidebar {
+    width: 17rem;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 100;
+    background-color: $white-color;
+    transition: transform $transition-duration;
+    @include desktop {
+      &.open {
+        transform: translateX(0%);
+      }
+      &.close {
+        transform: translateX(-100%);
       }
     }
-    &_content{
-     width: 100%;
-      padding-left: 17rem;
-      background-color: $bg-color;
-      min-height: 100vh;
-      transition: padding-left $transition-duration;
-      @include desktop {
-        padding-left: 0rem;
-      }
+  }
+
+  &_content {
+    width: 100%;
+    padding-left: 17rem;
+    background-color: $bg-color;
+    min-height: 100vh;
+    min-height: 100svh;
+    transition: padding-left $transition-duration;
+    @include desktop {
+      padding-left: 0rem;
     }
+
+    @include query(990px) {
+      min-height: calc(100vh - 8.48rem);
+      min-height: calc(100svh - 8.48rem);
+    }
+  }
 }

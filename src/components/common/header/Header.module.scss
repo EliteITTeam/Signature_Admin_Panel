@@ -1,4 +1,5 @@
 @import "./../../../styles/";
+@import "./../../../scss/mixins";
 
 .bgWrapper {
   background-color: rgba($color: $primary-color, $alpha: 0.2);
@@ -16,29 +17,57 @@
 }
 
 .container {
-  padding: $padding;
-  display: none;
-  @include desktop {
-    @include flex(row, center, space-between);
+  height: 100%;
+  padding: 0 5rem;
+  @include query(900px) {
+    padding: 0 4rem;
   }
+  @include query(500px) {
+    padding: 0 3rem;
+  }
+  @include query(400px) {
+    padding: 0 2rem;
+  }
+
+  display: none;
+
+  @include query(990px) {
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   & > .left {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+
     & > a {
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: center;
+
       & > img {
-        padding-top: $spacing-unit * 2;
         width: 15rem;
       }
     }
   }
   & > .right {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+
     & > button {
-      @include center;
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: center;
+      justify-content: center;
       background-color: transparent;
       border: none;
       outline: none;
-      border-radius: 0.5rem;
-      font-size: $font-lg + 1;
+      font-size: 3.5rem;
       cursor: pointer;
-      padding: 0.5rem 1rem;
     }
   }
 }

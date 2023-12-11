@@ -2,8 +2,8 @@
 @import "./../../scss/mixins";
 @import "./../../scss/variable";
 .container {
-  min-height: calc(100vh);
-  min-height: calc(100svh);
+  min-height: 100vh;
+  min-height: 100svh;
 
   background-image: url("./../../assets/settingBackgroundImage.svg");
   background-repeat: no-repeat;
@@ -15,8 +15,8 @@
 
   padding: 5rem;
   @include query(990px) {
-    min-height: calc(100vh - 20rem);
-    min-height: calc(100svh - 20rem);
+    min-height: calc(100vh - 8.48rem);
+    min-height: calc(100svh - 8.48rem);
   }
 
   @include query(900px) {
@@ -90,7 +90,6 @@
             font-style: normal;
             font-weight: 400;
             font-size: 1.2rem;
-            color: #111111;
           }
         }
 

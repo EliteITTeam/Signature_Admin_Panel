@@ -90,44 +90,46 @@ const ChangePassword = () => {
   }, [loading]);
   return (
     <div className={styles.container}>
-      <div className={styles.parent}>
-        <div className={styles.child}>
+      <div>
+        <div>
           <h1 className={styles.child_heading}>Change Password</h1>
           <p className={styles.child_desc}>
             Your Password has Expired, Please choose a New Password
           </p>
-          <div className={styles.child_form}>
-            <center>
+        </div>
+
+        <div className={styles.bottom}>
+          <div className={styles.otp}>
+            <div className={styles.top}>
               <h3>Email Sent</h3>
               <img src={share} alt="share" />
               <p>
                 Enter your six digit code sent on <br />
                 the given email
               </p>
-            </center>
+            </div>
+
             <OtpInput
               value={otp}
               onChange={setOtp}
               numInputs={6}
               renderInput={(props) => <input {...props} />}
               inputStyle={{
-                border: `1px solid #4EDAFC`,
-                fontSize: "20px",
-                padding: "2px",
-                marginRight: "1.5rem",
-                borderRadius: "5px",
-                marginTop: "1.5rem",
+                border: `.1rem solid #4EDAFC`,
+                fontSize: "2rem",
+                borderRadius: ".5rem",
               }}
               containerStyle={{
-                display: "flex",
-                justifyContent: "center",
+                display: "grid",
+                gridTemplateColumns: "repeat(6,1fr)",
+                gap: "1rem",
               }}
             />
+          </div>
 
-            <div className={styles.inputs}>
-              <div className={styles.child_form_question}>
-                <label>New Password</label>
-              </div>
+          <div className={styles.inputs}>
+            <div>
+              <label>New Password</label>
               <input
                 type="password"
                 placeholder="*********"
@@ -137,11 +139,12 @@ const ChangePassword = () => {
                 name="newPassword"
               />
               {formik.touched.newPassword && formik.errors.newPassword && (
-                <p style={errorStyles}>{formik.errors.newPassword}</p>
+                <p>{formik.errors.newPassword}</p>
               )}
-              <div className={styles.child_form_question}>
-                <label>Confirm New Password</label>
-              </div>
+            </div>
+
+            <div>
+              <label>Confirm New Password</label>
               <input
                 type="password"
                 placeholder="*********"
@@ -152,33 +155,34 @@ const ChangePassword = () => {
               />
               {formik.touched.confirmPassword &&
                 formik.errors.confirmPassword && (
-                  <p style={errorStyles}>{formik.errors.confirmPassword}</p>
+                  <p>{formik.errors.confirmPassword}</p>
                 )}
             </div>
-            <div className={styles.buttons}>
-              <button
-                onClick={() =>
-                  dispatch(
-                    generateOTP({ body: { email: email ?? "" } }, () => {
-                      toast.success("OTP has been sent to your email!");
-                      setCountdown(60);
-                      setDisabled(true);
-                    })
-                  )
-                }
-                type="submit"
-                disabled={disabled}
-              >
-                Get New OTP{disabled ? ` (${countdown}s)` : ""}
-              </button>
-              <button
-                onClick={formik.handleSubmit}
-                type="submit"
-                disabled={!formik.dirty || !formik.isValid || otp.length !== 6}
-              >
-                Submit
-              </button>
-            </div>
+          </div>
+
+          <div className={styles.buttons}>
+            <button
+              onClick={() =>
+                dispatch(
+                  generateOTP({ body: { email: email ?? "" } }, () => {
+                    toast.success("OTP has been sent to your email!");
+                    setCountdown(60);
+                    setDisabled(true);
+                  })
+                )
+              }
+              type="submit"
+              disabled={disabled}
+            >
+              Get New OTP{disabled ? ` (${countdown}s)` : ""}
+            </button>
+            <button
+              onClick={formik.handleSubmit}
+              type="submit"
+              disabled={!formik.dirty || !formik.isValid || otp.length !== 6}
+            >
+              Submit
+            </button>
           </div>
         </div>
       </div>

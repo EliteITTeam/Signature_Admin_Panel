@@ -14,10 +14,10 @@ const Header = ({ handler, isSideOpen }) => {
       <div className={styles.container}>
         <div
           className={styles.left}
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/dashboard")}
           style={{ cursor: "pointer" }}
         >
-          <a href="#">
+          <a>
             <img src={logo} alt="Stamplify" />
           </a>
         </div>
